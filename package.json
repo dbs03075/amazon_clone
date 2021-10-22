@@ -1,0 +1,28 @@
+{
+  "name": "amazon_clone",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "pm2 start backend/server.js --watch"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbs03075/amazon_clone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dbs03075/amazon_clone/issues"
+  },
+  "homepage": "https://github.com/dbs03075/amazon_clone#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-plugin-react": "^7.26.0"
+  }
+}
