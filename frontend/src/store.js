@@ -1,6 +1,7 @@
 import {createStore, compose, applyMiddleware, combineReducers} from 'redux';
 import thunk from 'redux-thunk';
-import {productListReducer} from './reducers/productReducers';
+import { cartReducer } from './reducers/cartReducers';
+import {productDetailsReducer, productListReducer} from './reducers/productReducers';
 
 // applyMiddleWare는 미들웨어를 사용하기 위한 모듈?
 // 미들웨어란, 액션과 리듀서 사이에 존재합니다. 특정 액션을 가하고 리듀서가 처리하긱 전에 작업을 처리합니다.
@@ -13,12 +14,18 @@ import {productListReducer} from './reducers/productReducers';
 // compose  compose는 순차적으로 함수를 적용해나가는 gulp의 pipe 같은 역할을 입니다. 미들웨어를 사용할 때 적용해주면 좋습니다.
 
 // 기본적인 reducer를 통해서 data를 state 값으로 설정해준다. 
-const initialState = {};
+const initialState = {
+    cart:{
+        cartItems: localStorage.getItem('cartItems')? JSON.parse(localStorage.getItem('cartItems')):[],
+    }
+};
 
 // reducer를 다른 파일을 통해 들고 온다.
 // reducer의 값을 콤바인리듀서를 통해 다른 곳에 퍼져있는 reducer를 통합한다.
 const reducer = combineReducers({
     productList : productListReducer,
+    productDetails : productDetailsReducer,
+    cart: cartReducer,
 });
 // 그리고 여기서 중요한 부분은 !!!! combineReducer를 통해 나오는 reducer가 
 // return하는 state는 combineReducer에서 설정하는 key내에 존재하게 되는 것이다. 

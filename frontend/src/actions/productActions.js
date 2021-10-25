@@ -3,7 +3,7 @@
 
 
 import Axios from "axios";
-import { PROCUCT_LIST_FAIL, PROCUCT_LIST_REQUEST, PROCUCT_LIST_SUCCESS } from "../constants/productConstants"
+import { PROCUCT_DETAILS_FAIL, PROCUCT_DETAILS_REQUEST, PROCUCT_DETAILS_SUCCESS, PROCUCT_LIST_FAIL, PROCUCT_LIST_REQUEST, PROCUCT_LIST_SUCCESS } from "../constants/productConstants"
 // export 와 export default의 차이로 인해 {}가 필요함
 
 // listProduct를 import 하고 있는것은 HOMESCREEN이다. 
@@ -21,4 +21,20 @@ export const listProducts = ()=> async(dispatch)=>{
     }
 
     
+};
+
+export const detailsProduct = (productId) => async (dispatch)=>{
+    dispatch({type: PROCUCT_DETAILS_REQUEST, payload: productId});
+    try{
+        const {data} = await Axios.get(`/api/products/${productId}`);
+        dispatch({type:PROCUCT_DETAILS_SUCCESS, payload:data});
+    } catch(error){
+        dispatch({
+            type: PROCUCT_DETAILS_FAIL, 
+            payload: error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+        });
+    }
+
 }
