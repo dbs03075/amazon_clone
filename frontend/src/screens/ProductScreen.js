@@ -11,9 +11,10 @@ import Rating from "../components/Rating";
 export default function ProductScreen(props){
     console.log(props);
     const dispatch = useDispatch();
-    const productId = props.match.params.id;
-    const [qty, setQty] = useState(1);
-    const productDetails = useSelector((state)=> state.productDetails);
+    const productId = props.match.params.id; //파라미터에서 id 추출
+    const [qty, setQty] = useState(1); // 이 함수 내에서 스테이트 사용하는 거임
+    console.log(useSelector((state)=>state));
+    const productDetails = useSelector((state)=> state.productDetails); // 통합된 스토어의 스테이트 사용
     const {loading, error, product} = productDetails;
     // const product = data.products.find((x) => x._id === props.match.params.id) // what is that mean? that's mean is exactly same user inter router path="/product/:id"
     // if(!product){
@@ -21,12 +22,16 @@ export default function ProductScreen(props){
     // }
     console.log(productDetails);
 
+    // useEffect가 무엇인지 확인 필요
     useEffect(()=>{
         dispatch(detailsProduct(productId));
     },[dispatch, productId]);
+
     const addToCartHandler = ()=>{
-        props.history.push(`/cart/${productId}?qty=${qty}`)
+        //부모-자식 component 관계가 아닌, routing으로 특정 페이지에서 다른 페이지로 이동 할때도 props를 넘겨줄 수 있는 방법
+        props.history.push(`/cart/${productId}?qty=${qty}`) // 이동하는 url
     }
+
     return(
         <div>
         {loading ? (<LoadingBox></LoadingBox>)
@@ -107,6 +112,7 @@ export default function ProductScreen(props){
                     </div>
 
                 </div>
+                {/* <button onClick={isItWork}>isItWork</button> */}
             </div>
         )}
         

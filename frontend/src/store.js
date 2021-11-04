@@ -39,7 +39,6 @@ const reducer = combineReducers({
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 const composeEnhancer = devTools || compose; // ||는 or 연산자로 만약에 devTools가 없다면 compose를 할당하라는 의미이다.
 
-
 // createStore를 통해서 reducer를 등록해준다.
 // composeEnhancer(applyMiddleware(thunk)) 이를 통해 크롬 extension에서 state를 확인할 수 있게 되었다.
 const store = createStore(reducer, initialState, composeEnhancer(applyMiddleware(thunk)));
