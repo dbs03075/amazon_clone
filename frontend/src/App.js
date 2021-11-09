@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import CartScreen from './screens/CartScreen';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
+import SigninScreen from './screens/SigninScreen';
 
 
 function App(props){
@@ -40,6 +41,7 @@ function App(props){
                 {/* Route는 path property와 현재 URL을 비교하여 현재 URL에 path property가 포함되면 component property에 할당된 Component나 Route 태그 안쪽에 적힌 코드를 보여주게 됩니다 */}
                 <Route path="/cart/:id?" component={CartScreen}></Route>
                 <Route exact path="/" component={HomeScreen}></Route>
+                <Route path="/signin" component={SigninScreen}></Route>
                 <Route exact path="/product/:id"  component={ProductScreen}></Route>
             </main>
             <footer className="row center"> All right reserved</footer>
